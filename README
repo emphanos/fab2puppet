@@ -1,0 +1,54 @@
+# __Author: Romaric Philogene @ blog.evoxmusic.fr
+# __Contact: evoxmusic@gmail.com
+
+Note : Fab2Puppet is still in developpment and I am sorry if you find the code unclear.
+
+-------- What is Fab2Puppet ? --------
+
+Fab2Puppet is a python tool to deploy with ease of use puppet agent from puppet master on your clients.
+
+-------- Prerequisites to make Fab2Puppet working --------
+
+Nota Bene : fab2puppet was implemented and tested with debian squeeze (6.0), Fabric v0.9.1, puppet client/master v2.6.2.
+
+1°) apt-get install fabric # Install fabric from packages
+2°) then unzip the content where you want on your puppet-master.
+
+-------------------------------------------------------------------------------------------------------------------------------
+ 
+Request : I am looking for people to make it works on any platforms like Red Hat/Cent OS, ubuntu..
+
+Before starting to use it, you must configure fab2puppet.conf
+
+'Commands:'
+
+'# This command install puppet on the hostname and link it to the master.'
+'  |--> fab puppet:specific_host,install
+
+'# This command remove puppet on the hostname and remove certs on the client and the master.'
+'  |--> fab puppet:specific_host,remove
+
+'# If you just want to restart puppet agent on the client side.'
+'	|--> fab puppet:specific_host,restart
+
+'# This command list host(s) linked to the master.'
+'  --> fab list_hosts
+
+'# This command show every changes on all hosts without applying it.'
+'  --> fab update:all,noop
+
+'# This command apply every changes on all hosts.'
+	--> fab update:all,apply
+
+'# If you want watch/apply changes on hosts with regex.'
+	ex : I want to see changes on host-dev, host-prod, host-poc without making them.
+
+	--> fab update:host.*,noop
+	
+	ex : I have got prod1, prod2, prod3 and I want to match only prod1 and prod3.
+	--> fab update:prod[13],noop
+
+'# If you want to show/apply changes on a specific host.'
+	--> fab update:specific_host,noop
+	--> fab update:specific_host,apply
+
